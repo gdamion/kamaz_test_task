@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<launch>
+
+  <node pkg="bumpers_info" type="bumpers_info_node.py" name="bumper_info" output="screen" clear_params="true">
+  </node>
+  
+  <!--node pkg="sberbot_control" type="led_control.py" name="led_control">
+  </node-->
+  <!-- Not using, since have in control launch, related to hardware -->
+
+</launch>

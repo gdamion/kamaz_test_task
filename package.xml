@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>kamaz_test_task</name>
+  <version>0.0.0</version>
+  <description>The test tassk for an applicant</description>
+  <maintainer email="bogoslovsky.alexander@ya.ru">Bogoslovskiy Alexander</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>genmsg</depend>
+
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+</package>
