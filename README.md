@@ -15,3 +15,24 @@
 
 ### Валидация результата
 К заданию приложен файл track_odometry.bag с записью одометрии
+
+---
+## Решение
+### Запуск
+```
+roslaunch kamaz_test_task kamaz_test_task.launch max_buf:=2000
+```
+Параметр `max_buf` ограничивает максимальное количество точек в траектории (по умолчанию равен 1000)
+
+### Топик
+Выходной топик: `/kamaz_test_task/path`, содержащий path и path_len
+
+### Вызов сервисов
+```
+rosservice call /kamaz_test_task/start_record 1
+rosservice call /kamaz_test_task/stop_record 1
+rosservice call /kamaz_test_task/clear_trajectory 1
+```
+
+### Особенность
+Алгоритм не учитывает возможные проскальзывания (то есть не учитывает часть входного сообщения с Twist). В дальнейшем это можно будет исправить.

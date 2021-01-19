@@ -16,11 +16,11 @@ class NodeClass:
         self.path = Path()
         self.path_len = float(0)
 
-        self.input = rospy.Subscriber('/carla/ego_vehicle/odometry', Odometry, self.odomCB)
-        self.output = rospy.Publisher('/path', KamazPath, queue_size=10)
-        self.start_record = rospy.Service('start_record', StartRecord, self.startRecord)
-        self.stop_record = rospy.Service('stop_record', StopRecord, self.stopRecord)
-        self.clear_trajectory = rospy.Service('clear_trajectory', ClearTrajectory, self.clearTrajectory)
+        self.input = rospy.Subscriber('/carla/ego_vehicle/odometry', Odometry, self.odomCB, queue_size=100)
+        self.output = rospy.Publisher('~path', KamazPath, queue_size=100)
+        self.start_record = rospy.Service('~start_record', StartRecord, self.startRecord)
+        self.stop_record = rospy.Service('~stop_record', StopRecord, self.stopRecord)
+        self.clear_trajectory = rospy.Service('~clear_trajectory', ClearTrajectory, self.clearTrajectory)
 
         self.err_req = "You've sent false request. You should send true value in the request msg!"
         self.record_started = False
@@ -51,6 +51,7 @@ class NodeClass:
             self.path.header = new_data.header
             if (len(self.path.poses) > self.max_buf):
                 self.path.poses.pop(0)
+                rospy.logwarn("Buffer (%d) overloaded, clearing the 1-st element", self.max_buf)
             self.path.poses.append(pose)
 
         k_path = KamazPath()
@@ -97,11 +98,12 @@ class NodeClass:
         res = ClearTrajectoryResponse()
         if req.clear == True:
             s = ""
-            if self.path_len > 0 and self.path.poses:
+            if self.path_len > 0 or len(self.path.poses) > 0:
                 s = "Path recording cleared"
+                self.path.poses = []
                 self.path_len = float(0)
             else:
-                s = "Path recording is already equal to zero"
+                s = "Path recording is already empty"
             res.res = s
             rospy.loginfo(s)
         else:
