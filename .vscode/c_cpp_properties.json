@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/al/Code/catkin_ws_sber/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/al/Code/catkin_ws_sber/src/courier/bumper_recovery/include/**",
+        "/home/al/Code/catkin_ws_sber/src/courier/courier_costmap_plugins/costmap_prohibition_layer/include/**",
+        "/home/al/Code/catkin_ws_sber/src/courier/courier_slam/include/**",
+        "/home/al/Code/catkin_ws_sber/src/courier/leg_tracker/include/**",
+        "/home/al/Code/catkin_ws_sber/src/courier/courier_costmap_plugins/range_sensor_layer/include/**",
+        "/home/al/Code/catkin_ws_sber/src/courier/rms_courier/include/**",
+        "/home/al/Code/catkin_ws_sber/src/courier/rplidar_ros/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}
